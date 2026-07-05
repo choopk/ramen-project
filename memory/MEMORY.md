@@ -21,7 +21,9 @@ or evicted at consolidation.
 
 ## Lessons
 
-(none yet)
+- Agent must proactively read MEMORY.md + USER.md at session start even if
+  opencode.json instructions are set. The config injects them, but the agent
+  should verify and act on the content, not just see it. [agent · 2026-07-05]
 
 ## Watchlist
 

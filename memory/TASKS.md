@@ -14,9 +14,9 @@
       spoke #11 (~1,800 words). Already published — revise in place, set updatedDate.
 - [ ] Expand live stub src/content/blog/regional-ramen-across-japan.mdx into
       spoke #8 (~3,000 words). Already published — revise in place, set updatedDate.
-- [ ] Write spoke #1: Shoyu Ramen guide (kw "shoyu ramen", ~2,000 words, draft: true)
-- [ ] Write spoke #2: Shio Ramen (kw "shio ramen", ~1,800 words, draft: true)
-- [ ] Write spoke #5: Ramen Noodles Explained (kw "ramen noodles types", ~2,000 words, draft: true)
+- [x] Write spoke #1: Shoyu Ramen guide (kw "shoyu ramen", ~2,000 words, draft: true)
+- [x] Write spoke #2: Shio Ramen (kw "shio ramen", ~1,800 words, draft: true)
+- [x] Write spoke #5: Ramen Noodles Explained (kw "ramen noodles types", ~2,000 words, draft: true)
 - [ ] Write spoke #3: Miso Ramen (kw "miso ramen", ~2,000 words, draft: true)
 - [ ] Write spoke #4: Tonkotsu Ramen (kw "tonkotsu ramen", ~2,200 words, draft: true)
 - [ ] Write spoke #6: Ramen Toppings (kw "ramen toppings", ~2,000 words, draft: true)
