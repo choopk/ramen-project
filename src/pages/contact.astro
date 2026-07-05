@@ -1,0 +1,31 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactEmail from '../components/ContactEmail.astro';
+---
+
+<PageLayout
+  title="Contact the Ramen Guide Editorial Team"
+  description="Reach the Ramen Guide editorial team with questions, corrections, story tips, or partnership inquiries about our coverage."
+>
+  <p>
+    The fastest way to reach us is email. We read everything and aim to reply to genuine inquiries
+    within a few business days.
+  </p>
+
+  <p>
+    <ContactEmail class="font-semibold" />
+  </p>
+
+  <h2>What to write about</h2>
+  <ul>
+    <li><strong>Corrections:</strong> found an error or a shop that has closed? Tell us and we'll fix it and note the correction.</li>
+    <li><strong>Tips &amp; story ideas:</strong> new shops, regional styles, or techniques worth covering.</li>
+    <li><strong>Advertising &amp; partnerships:</strong> inquiries about display advertising or sponsorship.</li>
+    <li><strong>Privacy requests:</strong> to exercise any of the data rights described in our <a href="/privacy-policy/">privacy policy</a>.</li>
+  </ul>
+
+  <p>
+    For how we handle the information you send us, see our
+    <a href="/privacy-policy/">privacy policy</a>.
+  </p>
+</PageLayout>

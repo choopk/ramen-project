@@ -1,0 +1,24 @@
+# Git hooks managed by lefthook (https://lefthook.dev)
+# Installed automatically via the `prepare` script after `pnpm install`.
+pre-commit:
+  parallel: false
+  jobs:
+    - name: lint
+      # oxlint lints the <script> blocks in .astro/.svelte too (no template linting yet).
+      glob: '*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,astro,svelte}'
+      run: pnpm exec oxlint --fix {staged_files}
+      stage_fixed: true
+    - name: format
+      # .astro is intentionally absent — oxfmt cannot format it yet (planned upstream).
+      glob: '*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,svelte,json,jsonc,css,md,mdx,yaml,yml}'
+      run: pnpm exec oxfmt {staged_files}
+      stage_fixed: true
+
+pre-push:
+  jobs:
+    - name: adsense-readiness
+      # Reminder only — prints the AdSense readiness scorecard, never blocks the push.
+      # Builds first because the audit reads dist/ (local dist is usually stale, since
+      # deploys build remotely on Cloudflare). Build output is suppressed so only the
+      # scorecard shows. The trailing `|| true` keeps exit 0. Skip with `git push --no-verify`.
+      run: pnpm run build >/dev/null 2>&1 && pnpm run audit || true

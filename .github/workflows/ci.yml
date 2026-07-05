@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save CI minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, format, typecheck, build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (oxlint)
+        run: pnpm run lint
+
+      - name: Format check (oxfmt)
+        run: pnpm run format:check
+
+      - name: Typecheck (astro check)
+        run: pnpm run check
+
+      - name: Build
+        run: pnpm run build
+
+      # Non-blocking: prints the AdSense readiness scorecard to the CI log.
+      # Does not fail the pipeline while content is still being built up.
+      - name: Ad-network readiness audit (report only)
+        run: pnpm run audit || true

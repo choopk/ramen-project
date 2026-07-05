@@ -1,0 +1,12 @@
+---
+// Renders the public contact email as a mailto link, wrapped in Cloudflare's
+// `email_off` directive so Scrape Shield's Email Address Obfuscation skips it. Without
+// this, Cloudflare rewrites the link to /cdn-cgi/l/email-protection, which JS-less
+// crawlers follow and get a 404 (a site-wide broken-outlink SEO issue). Slot fallback
+// renders the address itself when no custom link text is provided.
+import { SITE } from '../consts';
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<!--email_off--><a href={`mailto:${SITE.contactEmail}`} class={className} {...rest}><slot>{SITE.contactEmail}</slot></a><!--/email_off-->

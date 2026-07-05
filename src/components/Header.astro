@@ -1,0 +1,107 @@
+---
+import { SITE } from '../consts';
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const blogActive = path === '/' || path.startsWith('/blog');
+
+const NAV = [
+  { href: '/', label: 'Blog', active: blogActive },
+  { href: '/about/', label: 'About', active: isActive('/about') },
+  { href: '/contact/', label: 'Contact', active: isActive('/contact') },
+];
+---
+
+<a
+  href="#main"
+  class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-[color:var(--color-paper)] focus:px-4 focus:py-2 focus:text-[color:var(--color-ink)] focus:no-underline focus:shadow focus:outline focus:outline-2 focus:outline-[color:var(--color-accent)]"
+>
+  Skip to content
+</a>
+
+<header
+  class="relative border-b border-t-2 border-[color:var(--color-rule)] border-t-[color:var(--color-accent)] bg-[color:var(--color-paper)]"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+    <a href="/" class="flex items-center no-underline" aria-label={`${SITE.title} home`}>
+      <span class="hanko mr-2.5" aria-hidden="true">麺</span>
+      <span class="flex flex-col leading-none">
+        <span class="font-[family-name:var(--font-serif)] text-lg font-semibold tracking-[0.08em] text-[color:var(--color-ink)]">
+          RAMEN GUIDE
+        </span>
+        <span lang="ja" aria-hidden="true" class="jp-accent mt-1 text-[10px]">ラーメンガイド</span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      id="nav-toggle"
+      class="inline-flex items-center justify-center rounded p-2 text-[color:var(--color-ink)] sm:hidden"
+      aria-label="Menu"
+      aria-controls="primary-nav"
+      aria-expanded="false"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav
+      id="primary-nav"
+      class="absolute left-0 right-0 top-full z-40 hidden flex-col gap-1 border-b border-[color:var(--color-rule)] bg-[color:var(--color-paper)] px-5 py-3 text-sm sm:static sm:z-auto sm:flex sm:flex-row sm:items-center sm:gap-6 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0"
+      aria-label="Primary"
+    >
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "block border-[color:var(--color-accent)] py-1 no-underline sm:py-2",
+              item.active && "font-semibold sm:border-b-2",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/rss.xml"
+        class="block py-1 text-[color:var(--color-ink-soft)] no-underline sm:py-2"
+      >
+        RSS
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('primary-nav');
+
+  const setNavOpen = (open: boolean) => {
+    if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('hidden', !open);
+  };
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      setNavOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    // Reset state when crossing into the desktop breakpoint (Tailwind sm = 640px).
+    const mq = window.matchMedia('(min-width: 640px)');
+    mq.addEventListener('change', (e) => {
+      if (e.matches) setNavOpen(false);
+    });
+  }
+
+  // Escape closes the mobile drawer.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (toggle?.getAttribute('aria-expanded') === 'true') {
+      setNavOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

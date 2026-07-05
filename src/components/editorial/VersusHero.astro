@@ -1,0 +1,70 @@
+---
+// "Tale of the tape" head-to-head card: two contenders in their corners with a centered VS, then
+// a stack of stat rows (value | label | value). The winner of a numeric row can be flagged to tint
+// and bold that side. not-prose so the card owns its own typography; the left corner reads in
+// aizome indigo and the right in the brand vermillion ink, so a reader tracks each side by color
+// throughout. Reusable for any 1-v-1 comparison (e.g. tonkotsu vs shoyu).
+interface Row {
+  label: string;
+  left: string;
+  right: string;
+  win?: 'left' | 'right' | 'tie';
+}
+
+interface Props {
+  leftName: string;
+  rightName: string;
+  leftSub?: string;
+  rightSub?: string;
+  rows: Row[];
+}
+
+const { leftName, rightName, leftSub, rightSub, rows } = Astro.props;
+
+const LEFT = 'var(--color-indigo)'; // aizome indigo (left corner)
+const RIGHT = 'var(--color-accent-ink)'; // vermillion ink (right corner)
+---
+
+<div class="not-prose cc-block overflow-hidden rounded-xl border border-[color:var(--color-rule)] bg-[color:var(--color-paper-soft)]">
+  {/* corners */}
+  <div class="grid grid-cols-[1fr_auto_1fr] items-stretch">
+    <div class="border-b-2 px-4 py-4 sm:px-6 sm:py-5" style={`border-color: ${LEFT};`}>
+      <div class="text-lg font-bold leading-tight sm:text-xl" style={`color: ${LEFT};`}>{leftName}</div>
+      {leftSub && <div class="mt-1 text-xs text-[color:var(--color-ink-soft)]">{leftSub}</div>}
+    </div>
+    <div class="flex items-center justify-center border-b border-[color:var(--color-rule)] px-3">
+      <span class="font-[family-name:var(--font-serif)] text-sm font-semibold tracking-widest text-[color:var(--color-ink-soft)]">
+        VS
+      </span>
+    </div>
+    <div class="border-b-2 px-4 py-4 text-right sm:px-6 sm:py-5" style={`border-color: var(--color-accent);`}>
+      <div class="text-lg font-bold leading-tight sm:text-xl" style={`color: ${RIGHT};`}>{rightName}</div>
+      {rightSub && <div class="mt-1 text-xs text-[color:var(--color-ink-soft)]">{rightSub}</div>}
+    </div>
+  </div>
+
+  {/* tale of the tape */}
+  <dl class="divide-y divide-[color:var(--color-rule)]">
+    {
+      rows.map((r) => (
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 py-3 sm:px-6">
+          <dd
+            class="text-right text-sm sm:text-base"
+            style={`margin:0; font-weight:${r.win === 'left' ? 700 : 500}; color:${r.win === 'left' ? LEFT : 'var(--color-ink)'};`}
+          >
+            {r.left}
+          </dd>
+          <dt class="px-2 text-center text-[11px] font-medium uppercase tracking-wider text-[color:var(--color-ink-soft)] sm:text-xs">
+            {r.label}
+          </dt>
+          <dd
+            class="text-left text-sm sm:text-base"
+            style={`margin:0; font-weight:${r.win === 'right' ? 700 : 500}; color:${r.win === 'right' ? RIGHT : 'var(--color-ink)'};`}
+          >
+            {r.right}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</div>

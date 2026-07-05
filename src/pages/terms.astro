@@ -1,0 +1,84 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactEmail from '../components/ContactEmail.astro';
+import { SITE } from '../consts';
+
+const updated = new Date(SITE.lastPolicyUpdate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const jurisdiction = SITE.jurisdiction || 'the jurisdiction in which the operator of Ramen Guide is established';
+---
+
+<PageLayout
+  title="Terms of Service for Ramen Guide Readers"
+  description="The terms governing your use of the Ramen Guide website, including acceptable use, intellectual property, and liability."
+  lastUpdated={updated}
+>
+  <p>
+    These Terms of Service ("Terms") govern your use of <a href={SITE.url}>{SITE.url}</a> (the
+    "Site"), operated by <strong>Ramen Guide</strong>. By using the Site you agree to
+    these Terms. If you do not agree, please do not use the Site.
+  </p>
+
+  <h2>Use of the Site</h2>
+  <p>
+    You may read and share our content for personal, non-commercial use. You agree not to misuse the
+    Site, including by attempting to disrupt it, scrape it at a scale that degrades service, or
+    access it in violation of applicable law.
+  </p>
+
+  <h2>Intellectual property</h2>
+  <p>
+    Unless otherwise stated, all content on the Site (text, design, and graphics) is owned by
+    Ramen Guide and protected by intellectual property law. You may quote brief excerpts
+    with clear attribution and a link, but you may not republish substantial portions without our
+    written permission.
+  </p>
+
+  <h2>No professional advice</h2>
+  <p>
+    Content on the Site is for general informational purposes only and is not medical, nutritional,
+    dietary, or other professional advice. See our <a href="/disclaimer/">disclaimer</a> for
+    details. You are responsible for your own decisions.
+  </p>
+
+  <h2>Third-party links and advertising</h2>
+  <p>
+    The Site contains links to third-party websites and displays third-party advertising. We are not
+    responsible for the content, products, or practices of third parties. Links and ads do not imply
+    endorsement.
+  </p>
+
+  <h2>Disclaimer of warranties</h2>
+  <p>
+    The Site is provided "as is" and "as available" without warranties of any kind, whether express
+    or implied, including fitness for a particular purpose and accuracy of information.
+  </p>
+
+  <h2>Limitation of liability</h2>
+  <p>
+    To the maximum extent permitted by law, Ramen Guide shall not be liable for any
+    indirect, incidental, or consequential damages arising from your use of, or inability to use,
+    the Site or its content.
+  </p>
+
+  <h2>Changes to these Terms</h2>
+  <p>
+    We may update these Terms from time to time. Continued use of the Site after changes take effect
+    constitutes acceptance of the revised Terms.
+  </p>
+
+  <h2>Governing law</h2>
+  <p>
+    These Terms are governed by the laws of {jurisdiction}, without regard to its conflict-of-laws
+    rules.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about these Terms? Email
+    <ContactEmail />.
+  </p>
+</PageLayout>

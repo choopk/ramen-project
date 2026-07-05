@@ -1,0 +1,21 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { SITE } from '../consts';
+---
+
+<PageLayout
+  title="Almost there: confirm your subscription"
+  description="Check your inbox to confirm your email and start receiving new Ramen Guide posts."
+  noindex={true}
+>
+  <p>
+    Thanks for subscribing to <strong>{SITE.title}</strong>. If you just signed up, check your inbox
+    for a confirmation email and click the link inside to finish. If it does not arrive in a few
+    minutes, check your spam folder. Once you are confirmed, new posts land in your inbox as they go
+    live.
+  </p>
+  <p>
+    While you wait, browse the <a href="/">latest posts</a>. Every email links straight back to
+    the full post, and you can unsubscribe at any time.
+  </p>
+</PageLayout>

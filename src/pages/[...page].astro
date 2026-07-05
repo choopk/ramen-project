@@ -1,0 +1,119 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import SchemaWebSite from '../components/SchemaWebSite.astro';
+import { SITE } from '../consts';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  // Posts per page before pagination kicks in. 10 is the widely recognized
+  // default (WordPress) and keeps page 1 to a single "next" click. Defined
+  // inside getStaticPaths because it runs in an isolated scope.
+  const POSTS_PER_PAGE = 10;
+  const posts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? data.draft !== true : true;
+    })
+  ).toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(posts, { pageSize: POSTS_PER_PAGE });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>;
+}
+
+const { page } = Astro.props;
+const isFirstPage = page.currentPage === 1;
+const pageTitle = isFirstPage
+  ? 'Ramen Guide: Japanese Ramen Styles & Regions'
+  : `Ramen Guide: Japanese Ramen, page ${page.currentPage}`;
+// Magazine layout: page 1 pulls the newest post out as the featured hero card.
+const featured = isFirstPage ? page.data[0] : undefined;
+const rest = isFirstPage ? page.data.slice(1) : page.data;
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <BaseHead title={pageTitle} />
+    <SchemaWebSite />
+  </head>
+  <body>
+    <Header />
+    <main id="main" tabindex="-1" class="mx-auto max-w-6xl px-5 py-12 focus:outline-none">
+      {
+        isFirstPage ? (
+          <section class="mb-12 max-w-3xl">
+            <h1 class="font-[family-name:var(--font-serif)] text-5xl font-semibold leading-[1.05] tracking-tight text-[color:var(--color-ink)] sm:text-6xl">
+              Every bowl of <span class="text-[color:var(--color-accent-ink)]">ramen</span>, explained.
+            </h1>
+            <p class="mt-5 max-w-2xl text-lg text-[color:var(--color-ink-soft)]">{SITE.tagline}</p>
+            <span class="washi-rule mt-7" aria-hidden="true"></span>
+          </section>
+        ) : (
+          // Subsequent pagination pages still need a single, keyword-bearing <h1>
+          // (page 1's hero only renders on page 1). Without this, /2/ etc. ship
+          // with no <h1>, which Bing flags and weakens on-page topical signal.
+          <section class="mb-12 max-w-3xl">
+            <h1 class="font-[family-name:var(--font-serif)] text-3xl font-semibold leading-tight tracking-tight text-[color:var(--color-ink)] sm:text-4xl">
+              Japanese Ramen Guides
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg text-[color:var(--color-ink-soft)]">
+              More from the Ramen Guide archive: page {page.currentPage} of {page.lastPage}.
+            </p>
+            <span class="washi-rule mt-6" aria-hidden="true"></span>
+          </section>
+        )
+      }
+
+      {featured && <section class="mb-12"><PostCard post={featured} featured /></section>}
+
+      <section>
+        <h2 class="mb-4 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)]">
+          {isFirstPage ? 'Latest' : 'More articles'}
+          <span lang="ja" aria-hidden="true" class="jp-accent text-[11px]">
+            {isFirstPage ? '最新' : '記事一覧'}
+          </span>
+        </h2>
+        {
+          page.data.length === 0 ? (
+            <p class="py-10 text-[color:var(--color-ink-soft)]">No posts yet. First one coming soon.</p>
+          ) : rest.length === 0 ? (
+            <p class="py-6 text-[color:var(--color-ink-soft)]">More bowls on the way.</p>
+          ) : (
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {rest.map((post) => <PostCard post={post} />)}
+            </div>
+          )
+        }
+      </section>
+
+      {
+        page.lastPage > 1 && (
+          <nav class="washi-divider mt-12 flex items-center justify-between pt-6 text-sm" aria-label="Pagination">
+            {page.url.prev ? (
+              <a href={page.url.prev} class="no-underline hover:text-[color:var(--color-accent-ink)]" rel="prev">
+                ← Newer posts
+              </a>
+            ) : (
+              <span class="text-[color:var(--color-ink-soft)]">← Newer posts</span>
+            )}
+            <span class="text-[color:var(--color-ink-soft)]">Page {page.currentPage} of {page.lastPage}</span>
+            {page.url.next ? (
+              <a href={page.url.next} class="no-underline hover:text-[color:var(--color-accent-ink)]" rel="next">
+                Older posts →
+              </a>
+            ) : (
+              <span class="text-[color:var(--color-ink-soft)]">Older posts →</span>
+            )}
+          </nav>
+        )
+      }
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import { SITE } from '../consts';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      name: SITE.title,
+      description: SITE.description,
+      url: SITE.url,
+      inLanguage: SITE.locale,
+      publisher: { '@id': `${SITE.url}/#organization` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.title,
+      url: SITE.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: new URL('/favicon.svg', SITE.url).toString(),
+      },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

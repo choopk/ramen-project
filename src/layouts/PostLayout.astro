@@ -1,0 +1,111 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SchemaArticle from '../components/SchemaArticle.astro';
+import SchemaBreadcrumb from '../components/SchemaBreadcrumb.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import MethodologyNote from '../components/MethodologyNote.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+import { SITE } from '../consts';
+import { lastmodFor } from '../lib/lastmod.mjs';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, author } = entry.data;
+const url = new URL(Astro.url.pathname, Astro.site);
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: title, href: Astro.url.pathname },
+];
+
+// Machine-readable "last modified" (schema dateModified + OG article:modified_time).
+// Prefer a manual updatedDate; otherwise derive it from the post file's git history.
+const gitLastmod = lastmodFor(`src/content/blog/${entry.id}.mdx`);
+const modifiedDate = updatedDate ?? (gitLastmod ? new Date(gitLastmod) : undefined);
+const dateLabel = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const updatedLabel = updatedDate?.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={heroImage}
+      type="article"
+      pubDate={pubDate}
+      modifiedDate={modifiedDate}
+      author={author}
+    />
+    <SchemaArticle
+      title={title}
+      description={description}
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      modifiedDate={modifiedDate}
+      author={author}
+      url={url}
+      image={heroImage}
+      tags={tags}
+    />
+    <SchemaBreadcrumb crumbs={crumbs} />
+  </head>
+  <body>
+    <Header />
+    <main id="main" tabindex="-1" class="mx-auto max-w-5xl px-5 py-12 focus:outline-none">
+      <Breadcrumb crumbs={crumbs} class="mx-auto mb-6 max-w-3xl" />
+      <article>
+        <header class="mx-auto mb-10 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs uppercase tracking-wider text-[color:var(--color-ink-soft)]">
+            <time datetime={pubDate.toISOString()}>{dateLabel}</time>
+            {updatedDate && (
+              <span>· Updated {updatedLabel}</span>
+            )}
+            {tags.map((tag) => (
+              <span
+                data-tag={tag}
+                class="rounded-[2px] border border-[color:var(--color-accent)] px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-[color:var(--color-accent-ink)]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 class="mt-4 font-[family-name:var(--font-serif)] text-4xl font-semibold leading-tight tracking-tight text-[color:var(--color-ink)] sm:text-5xl">
+            {title}
+          </h1>
+          <p class="mt-4 text-lg text-[color:var(--color-ink-soft)]">{description}</p>
+          <p class="mt-6 text-sm text-[color:var(--color-ink-soft)]">By {author}</p>
+          <span class="washi-rule mt-8" aria-hidden="true"></span>
+        </header>
+        <div class="prose prose-lg max-w-none prose-shell">
+          <slot />
+        </div>
+      </article>
+      <div class="mx-auto max-w-3xl">
+        <RelatedPosts currentId={entry.id} tags={tags} />
+        <SubscribeForm variant="post" />
+        <MethodologyNote />
+        <p class="mt-12 text-sm">
+          <a href="/" class="no-underline">← Back to all posts</a>
+        </p>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

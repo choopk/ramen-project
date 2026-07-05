@@ -1,0 +1,14 @@
+{
+  "name": "Ramen Guide",
+  "short_name": "Ramen Guide",
+  "description": "A field guide to Japanese ramen: styles, broths, regional bowls, and where to slurp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6ef",
+  "theme_color": "#faf6ef",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

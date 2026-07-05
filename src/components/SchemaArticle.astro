@@ -1,0 +1,56 @@
+---
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  modifiedDate?: Date;
+  author: string;
+  url: URL;
+  image?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, modifiedDate, author, url, image, tags } =
+  Astro.props;
+
+// dateModified prefers a manual updatedDate, then the git-derived modifiedDate, so it is
+// always present and reflects real freshness even when no updatedDate is set in frontmatter.
+const dateModified = updatedDate ?? modifiedDate;
+
+const imageUrl = image ? new URL(image, Astro.site).toString() : undefined;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  inLanguage: SITE.locale,
+  ...(tags && tags.length ? { keywords: tags.join(', ') } : {}),
+  datePublished: pubDate.toISOString(),
+  ...(dateModified ? { dateModified: dateModified.toISOString() } : {}),
+  ...(imageUrl ? { image: [imageUrl] } : {}),
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url.toString(),
+  },
+  author: {
+    '@type': 'Organization',
+    name: author,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.title,
+    url: SITE.url,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', SITE.url).toString(),
+    },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

@@ -1,0 +1,209 @@
+---
+// oxlint-disable-next-line import/no-unassigned-import -- side-effect import of global styles
+import '../styles/global.css';
+// Resolve the hashed URL of the heading font so it can be preloaded (600 is the workhorse
+// weight; 700 loads on demand via the @fontsource CSS imported in global.css).
+import shippori600 from '@fontsource/shippori-mincho/files/shippori-mincho-latin-600-normal.woff2?url';
+import { SITE } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  pubDate?: Date;
+  modifiedDate?: Date;
+  author?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image,
+  type = 'website',
+  pubDate,
+  modifiedDate,
+  author = SITE.author,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// The brand is carried by og:site_name and the JSON-LD Organization, so the <title> stays
+// the bare page title: a " · Ramen Guide" suffix would push most descriptive
+// titles past Ahrefs' 60-char limit. Length is enforced by src/integrations/seo-meta-guard.mjs.
+const fullTitle = title;
+const ogImage = new URL(image ?? '/og-default.png', Astro.site).toString();
+// Open Graph wants language_TERRITORY (e.g. en_US); a bare language code gets a default territory.
+const ogLocale = SITE.locale.includes('-') ? SITE.locale.replace('-', '_') : `${SITE.locale}_US`;
+
+// Load Google Analytics only in production builds, and only when a Measurement ID is set.
+// A runtime hostname guard (below) keeps *.pages.dev previews and localhost out of the data.
+const gaId = SITE.googleAnalyticsId;
+const clarityId = SITE.microsoftClarityId;
+const prodHost = new URL(SITE.url).hostname;
+const loadAnalytics = import.meta.env.PROD && Boolean(gaId);
+const loadClarity = import.meta.env.PROD && Boolean(clarityId);
+const adsenseId = SITE.adsensePublisherId;
+// AdSense loader runs only in production builds when a publisher ID is set. Google must find
+// the snippet live before it will review the site, so this goes up the moment the ID is filled.
+const loadAdsense = import.meta.env.PROD && Boolean(adsenseId);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+{SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+<link rel="canonical" href={canonicalURL} />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="preload" href={shippori600} as="font" type="font/woff2" crossorigin />
+<meta name="theme-color" content="#faf6ef" />
+<link rel="alternate" type="application/rss+xml" title={SITE.title} href={new URL('rss.xml', Astro.site)} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:image" content={ogImage} />
+{pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
+{type === 'article' && modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}
+{type === 'article' && <meta property="article:author" content={author} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{
+  loadAnalytics && (
+    <>
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    </>
+  )
+}
+{
+  loadClarity && (
+    <>
+      <link rel="preconnect" href="https://www.clarity.ms" />
+      <link rel="dns-prefetch" href="https://www.clarity.ms" />
+    </>
+  )
+}
+{
+  loadAdsense && (
+    <>
+      <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+      <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    </>
+  )
+}
+
+{
+  loadAnalytics && (
+    <>
+      <script is:inline async fetchpriority="low" src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+      <script is:inline define:vars={{ gaId, prodHost }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        // Only send hits from the live domain; skip pages.dev previews and localhost.
+        if (location.hostname === prodHost) {
+          gtag('js', new Date());
+          gtag('config', gaId);
+        }
+      </script>
+    </>
+  )
+}
+
+{
+  loadClarity && (
+    <script is:inline define:vars={{ clarityId, prodHost }}>
+      // Only load Clarity on the live domain; skip pages.dev previews and localhost.
+      if (location.hostname === prodHost) {
+        (function (c, l, a, r, i) {
+          c[a] = c[a] || function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+          var t = l.createElement(r);
+          t.async = 1;
+          t.fetchPriority = 'low';
+          t.src = 'https://www.clarity.ms/tag/' + i;
+          var y = l.getElementsByTagName(r)[0];
+          y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', clarityId);
+      }
+    </script>
+  )
+}
+
+{
+  loadAdsense && (
+    <script
+      is:inline
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+      crossorigin="anonymous"
+    />
+  )
+}
+
+<!--
+  WebMCP: expose read-only site tools to agent-capable browsers. Feature-detected, so for
+  every normal visitor this is a single property check that returns immediately: no external
+  fetch, no hydration, negligible cost (keeps the near-zero-client-JS CWV posture). /llms.txt
+  is only touched if an agent actually invokes a tool. Supports both the Chrome
+  early-preview shape (navigator.modelContext.provideContext) and the W3C draft
+  (document.modelContext.registerTool).
+-->
+<script is:inline>
+  (function () {
+    async function listArticles() {
+      var text = 'Catalog unavailable.';
+      try {
+        var res = await fetch('/llms.txt');
+        if (res.ok) text = await res.text();
+      } catch {
+        text = 'Catalog unavailable.';
+      }
+      return { content: [{ type: 'text', text: text }] };
+    }
+
+    var tools = [
+      {
+        name: 'list_articles',
+        description:
+          'List Ramen Guide posts and pillars from the machine-readable catalog (/llms.txt).',
+        inputSchema: { type: 'object', properties: {} },
+        annotations: { readOnlyHint: true },
+        execute: listArticles,
+      },
+    ];
+
+    var nav = navigator.modelContext;
+    if (nav && typeof nav.provideContext === 'function') {
+      nav.provideContext({ tools: tools });
+      return;
+    }
+
+    var doc = document.modelContext;
+    if (doc && typeof doc.registerTool === 'function') {
+      tools.forEach(function (tool) {
+        doc.registerTool(tool);
+      });
+    }
+  })();
+</script>
+
+<slot />

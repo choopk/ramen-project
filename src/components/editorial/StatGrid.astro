@@ -1,0 +1,17 @@
+---
+// Responsive grid of BigStat cards. A scan layer for the key numbers in a post.
+interface Props {
+  columns?: 2 | 3 | 4;
+}
+
+const { columns = 4 } = Astro.props;
+const cols = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+};
+---
+
+<div class:list={['not-prose cc-block grid grid-cols-1 gap-3', cols[columns]]}>
+  <slot />
+</div>

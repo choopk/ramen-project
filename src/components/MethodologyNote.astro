@@ -1,0 +1,18 @@
+---
+// Org-level E-E-A-T signal shown at the foot of every post. Brand-level only, no Person schema,
+// no individual byline (see editorial standards). Keep this Organization-scoped.
+import { SITE } from '../consts';
+import ContactEmail from './ContactEmail.astro';
+---
+
+<aside class="mt-12 rounded-md border border-l-2 border-[color:var(--color-rule)] border-l-[color:var(--color-accent)] bg-[color:var(--color-paper-soft)] px-5 py-4 text-sm text-[color:var(--color-ink-soft)]">
+  <p class="flex items-baseline gap-2 font-semibold text-[color:var(--color-ink)]">
+    How this was made
+    <span lang="ja" aria-hidden="true" class="jp-accent text-[11px]">制作ノート</span>
+  </p>
+  <p class="mt-1">
+    Researched, fact-checked, and reviewed by the {SITE.title} editorial team against our
+    <a href="/editorial-standards/" class="underline">editorial standards</a>, including how we use AI.
+    Spotted an error? <ContactEmail class="underline">Tell us</ContactEmail>.
+  </p>
+</aside>

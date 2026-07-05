@@ -1,0 +1,32 @@
+---
+// A boxed aside that breaks up long prose. Variants tint the left rule and supply a default
+// label. Content between the tags is authored as normal MDX. not-prose so the box owns its
+// own typography.
+interface Props {
+  variant?: 'note' | 'insight' | 'warning' | 'methodology';
+  title?: string;
+}
+
+const { variant = 'note', title } = Astro.props;
+
+const styles = {
+  note: { bar: 'var(--color-rule)', label: 'Note' },
+  insight: { bar: 'var(--color-accent)', label: 'Insight' },
+  warning: { bar: '#8a5410', label: 'Caution' },
+  methodology: { bar: 'var(--color-accent)', label: 'How this was made' },
+};
+const s = styles[variant];
+const heading = title ?? s.label;
+---
+
+<aside
+  class="not-prose cc-block rounded-md border border-[color:var(--color-rule)] bg-[color:var(--color-paper-soft)] px-5 py-4"
+  style={`border-left: 4px solid ${s.bar};`}
+>
+  <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--color-ink)]">
+    {heading}
+  </p>
+  <div class="mt-2 text-[15px] leading-relaxed text-[color:var(--color-ink-soft)]">
+    <slot />
+  </div>
+</aside>

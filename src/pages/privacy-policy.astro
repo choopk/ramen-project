@@ -1,0 +1,152 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactEmail from '../components/ContactEmail.astro';
+import { SITE } from '../consts';
+
+const updated = new Date(SITE.lastPolicyUpdate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<PageLayout
+  title="Privacy Policy: Data, Cookies & Your Rights"
+  description="How Ramen Guide collects, uses, and protects your personal information, including your rights under the GDPR and CCPA."
+  lastUpdated={updated}
+>
+  <p>
+    This Privacy Policy explains how <strong>Ramen Guide</strong> ("we", "us", "the
+    publication") collects, uses, and shares information when you visit
+    <a href={SITE.url}>{SITE.url}</a> (the "Site"). We aim to collect as little personal data as
+    possible.
+  </p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li>
+      <strong>Information you give us.</strong> If you email us at
+      <ContactEmail />, we receive your email address
+      and the contents of your message.
+    </li>
+    <li>
+      <strong>Newsletter subscription.</strong> If you subscribe to our email updates, we collect
+      your email address and the date and consent record of your sign-up, so we can send you new-post
+      notifications. You can unsubscribe at any time using the link in every email.
+    </li>
+    <li>
+      <strong>Information collected automatically.</strong> Like most websites, our hosting and
+      third-party services may log technical data such as your IP address, browser type, device
+      information, referring pages, and the pages you view. This is used to operate and secure the
+      Site and to understand aggregate usage.
+    </li>
+    <li>
+      <strong>Cookies and similar technologies.</strong> Cookies may be set by us and by third
+      parties (see below) for functionality, measurement, and advertising.
+    </li>
+  </ul>
+
+  <h2>Advertising and third-party partners</h2>
+  <p>
+    We intend to display advertising on the Site. Third-party vendors, including
+    <strong>Google</strong>, may use cookies and similar technologies to serve ads based on your
+    prior visits to this and other websites.
+  </p>
+  <ul>
+    <li>
+      Google's use of advertising cookies enables it and its partners to serve ads to you based on
+      your visits to the Site and/or other sites on the Internet.
+    </li>
+    <li>
+      You may opt out of personalised advertising by visiting
+      <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a>,
+      and from third-party vendors at
+      <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info</a> or
+      <a href="https://www.youronlinechoices.eu/" rel="nofollow noopener" target="_blank">youronlinechoices.eu</a>.
+    </li>
+  </ul>
+
+  <h2>Analytics</h2>
+  <p>
+    We use the following analytics services to understand how visitors use the Site and to improve
+    our content:
+  </p>
+  <ul>
+    <li>
+      <strong>Google Analytics</strong> (provided by Google) measures aggregate traffic such as page
+      views, sessions, and approximate location, using cookies. See
+      <a href="https://policies.google.com/privacy" rel="nofollow noopener" target="_blank">Google's Privacy Policy</a>.
+    </li>
+    <li>
+      <strong>Microsoft Clarity</strong> (provided by Microsoft) captures how visitors interact with
+      the Site through behavioural metrics, heatmaps, and session replay, which help us diagnose
+      usability issues. Clarity uses cookies and similar technologies, and Microsoft may use the data
+      it collects as described in the
+      <a href="https://privacy.microsoft.com/privacystatement" rel="nofollow noopener" target="_blank">Microsoft Privacy Statement</a>.
+    </li>
+  </ul>
+  <p>
+    Where analytics or advertising rely on consent, we will obtain it as required by applicable law.
+  </p>
+
+  <h2>Email newsletter</h2>
+  <p>
+    Our email updates are delivered through <strong>Kit</strong> (formerly ConvertKit), a
+    third-party email service provider that stores subscriber email addresses and sign-up details on
+    our behalf and processes them solely to send the notifications you requested. We do not share
+    your email address with advertisers. You can unsubscribe at any time using the link in every
+    email, and Kit's handling of your data is described in
+    <a href="https://kit.com/privacy" rel="nofollow noopener" target="_blank">Kit's Privacy Policy</a>.
+  </p>
+
+  <h2>How we use information</h2>
+  <p>
+    We use information to operate, maintain, and secure the Site; to respond to your messages; to
+    measure and improve our content; and to display and measure advertising. We do not sell your
+    personal information for money.
+  </p>
+
+  <h2>Your rights under the GDPR (EEA/UK)</h2>
+  <p>
+    If you are in the European Economic Area or the United Kingdom, you have the right to access,
+    correct, delete, restrict, or object to the processing of your personal data, and the right to
+    data portability and to lodge a complaint with a supervisory authority. Our legal bases for
+    processing are your consent (which you may withdraw at any time), our legitimate interests in
+    operating the Site, and compliance with legal obligations.
+  </p>
+
+  <h2>Your rights under the CCPA (California)</h2>
+  <p>
+    If you are a California resident, you have the right to know what personal information we
+    collect, to request deletion, to opt out of the "sale" or "sharing" of personal information as
+    those terms are defined by the CCPA, and not to be discriminated against for exercising these
+    rights. We do not sell personal information for monetary consideration; some advertising and
+    analytics cookie activity may constitute "sharing" under the CCPA, which you can limit using the
+    opt-out links above.
+  </p>
+
+  <h2>Data retention</h2>
+  <p>
+    We keep personal information only for as long as necessary for the purposes described here or as
+    required by law. Email correspondence is retained for as long as needed to handle your inquiry,
+    and newsletter subscriber data is retained until you unsubscribe.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    The Site is not directed to children under 16, and we do not knowingly collect personal
+    information from them.
+  </p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    We may update this policy from time to time. Material changes will be reflected by the "Last
+    updated" date above.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    To exercise any right or ask a privacy question, email
+    <ContactEmail />.
+  </p>
+</PageLayout>

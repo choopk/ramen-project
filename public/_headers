@@ -1,0 +1,9 @@
+# Keep Cloudflare Pages preview/staging deployments out of search indexes.
+# The production custom domain is unaffected by this rule.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# Advertise agent/AI discovery resources via RFC 8288 Link response headers.
+# Points AI agents and crawlers at the machine-readable site description (llms.txt) and feeds.
+/*
+  Link: </llms.txt>; rel="describedby"; type="text/markdown", </sitemap-index.xml>; rel="sitemap", </rss.xml>; rel="alternate"; type="application/rss+xml", </privacy-policy/>; rel="privacy-policy", </terms/>; rel="terms-of-service"

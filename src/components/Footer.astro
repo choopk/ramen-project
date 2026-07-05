@@ -1,0 +1,44 @@
+---
+import { SITE } from '../consts';
+import SubscribeForm from './SubscribeForm.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="washi-divider mt-24 bg-[color:var(--color-paper-soft)]">
+  <div class="mx-auto max-w-6xl px-5 py-10 text-sm text-[color:var(--color-ink-soft)]">
+    <div class="mb-8 flex items-center">
+      <span class="hanko mr-2.5" aria-hidden="true">麺</span>
+      <span class="flex flex-col leading-none">
+        <span class="font-[family-name:var(--font-serif)] text-base font-semibold tracking-[0.08em] text-[color:var(--color-ink)]">
+          RAMEN GUIDE
+        </span>
+        <span lang="ja" aria-hidden="true" class="jp-accent mt-1 text-[10px]">ラーメンガイド</span>
+      </span>
+    </div>
+    <SubscribeForm variant="footer" />
+    <nav
+      class="mb-6"
+      aria-label="Footer"
+    >
+      <h2 class="mb-2 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-wider text-[color:var(--color-ink)]">
+        Site
+        <span lang="ja" aria-hidden="true" class="jp-accent text-[11px]">サイト</span>
+      </h2>
+      <ul class="flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:gap-x-6">
+        <li><a href="/about/" class="no-underline">About</a></li>
+        <li><a href="/contact/" class="no-underline">Contact</a></li>
+        <li><a href="/editorial-standards/" class="no-underline">Editorial Standards</a></li>
+        <li><a href="/disclaimer/" class="no-underline">Disclaimer</a></li>
+        <li><a href="/privacy-policy/" class="no-underline">Privacy</a></li>
+        <li><a href="/terms/" class="no-underline">Terms</a></li>
+      </ul>
+    </nav>
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {SITE.title}. All rights reserved.</p>
+      <p class="flex gap-4">
+        <a href="/rss.xml" class="no-underline">RSS</a>
+        <a href="/sitemap-index.xml" class="no-underline">Sitemap</a>
+      </p>
+    </div>
+  </div>
+</footer>

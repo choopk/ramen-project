@@ -1,0 +1,27 @@
+---
+// A boxed, scannable summary. Doubles as a featured-snippet / GEO target. Pass plain strings.
+interface Props {
+  title?: string;
+  items: string[];
+}
+
+const { title = 'Key takeaways', items } = Astro.props;
+---
+
+<aside class="not-prose cc-block rounded-lg border border-[color:var(--color-rule)] bg-[color:var(--color-paper-soft)] px-6 py-5">
+  <p class="font-[family-name:var(--font-serif)] text-lg font-semibold text-[color:var(--color-ink)]">
+    {title}
+  </p>
+  <ul class="mt-3 space-y-2">
+    {
+      items.map((item) => (
+        <li class="flex gap-2 text-[15px] leading-relaxed text-[color:var(--color-ink-soft)]">
+          <span aria-hidden="true" style="color: var(--color-accent);">
+            &#8594;
+          </span>
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+</aside>

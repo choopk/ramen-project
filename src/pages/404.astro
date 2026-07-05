@@ -1,0 +1,30 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <BaseHead title="Page not found" description={`This page doesn't exist on ${SITE.title}.`} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <Header />
+    <main id="main" tabindex="-1" class="mx-auto max-w-3xl px-5 py-12 focus:outline-none">
+      <p class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-ink-soft)]">404</p>
+      <h1 class="mt-3 font-[family-name:var(--font-serif)] text-4xl font-semibold tracking-tight">
+        Page not found
+      </h1>
+      <p class="mt-4 max-w-2xl text-[color:var(--color-ink-soft)]">
+        This page doesn't exist. It may have moved, or the link is broken.
+      </p>
+      <p class="mt-6">
+        <a href="/" class="underline">Back to the homepage</a>.
+      </p>
+    </main>
+    <Footer />
+  </body>
+</html>

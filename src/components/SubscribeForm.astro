@@ -1,0 +1,92 @@
+---
+// New-post email capture. Posts to a Kit (ConvertKit) form endpoint as a plain HTML form:
+// no client JS, no island, no new dependency. Renders only when the newsletter is configured
+// and enabled in SITE (src/consts.ts), so an unconfigured build never ships a dead form.
+// On submit, Kit redirects the same tab to the form's success URL (set that to /subscribed/).
+import { SITE } from '../consts';
+
+interface Props {
+  // 'footer' = compact, fits the small-text footer; 'post' = bordered card for end-of-post.
+  variant?: 'footer' | 'post';
+}
+
+const { variant = 'footer' } = Astro.props;
+const { enabled, formAction } = SITE.newsletter;
+const show = Boolean(enabled && formAction);
+const inputId = `subscribe-email-${variant}`;
+
+const inputClass =
+  'w-full rounded-md border border-[color:var(--color-rule)] bg-[color:var(--color-paper)] px-3 py-2 text-sm text-[color:var(--color-ink)] placeholder:text-[color:var(--color-ink-soft)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-accent)] sm:flex-1';
+const buttonClass =
+  'shrink-0 rounded-md bg-[color:var(--color-ink)] px-4 py-2 text-sm font-medium text-[color:var(--color-paper)] transition-colors hover:bg-[color:var(--color-ink-soft)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-accent)]';
+---
+
+{
+  show &&
+    (variant === 'post' ? (
+      <section
+        class="mt-12 rounded-md border border-[color:var(--color-rule)] bg-[color:var(--color-paper-soft)] px-5 py-6"
+        aria-labelledby="subscribe-heading"
+      >
+        <p class="flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink-soft)]">
+          Subscribe
+          <span lang="ja" aria-hidden="true" class="jp-accent text-[11px]">購読</span>
+        </p>
+        <h2
+          id="subscribe-heading"
+          class="mt-2 font-[family-name:var(--font-serif)] text-2xl font-semibold tracking-tight text-[color:var(--color-ink)]"
+        >
+          Subscribe to {SITE.title}
+        </h2>
+        <p class="mt-2 text-sm text-[color:var(--color-ink-soft)]">
+          Researched guides to Japanese ramen, sent when a new post goes live.
+        </p>
+        <form method="post" action={formAction} class="mt-4 flex flex-col gap-2 sm:flex-row">
+          <label for={inputId} class="sr-only">
+            Email address
+          </label>
+          <input
+            id={inputId}
+            type="email"
+            name="email_address"
+            required
+            autocomplete="email"
+            placeholder="you@example.com"
+            class={inputClass}
+          />
+          <button type="submit" class={buttonClass}>
+            Subscribe
+          </button>
+        </form>
+        <p class="mt-2 text-xs text-[color:var(--color-ink-soft)]">No spam. Unsubscribe anytime.</p>
+      </section>
+    ) : (
+      <div class="mb-8 border-b border-[color:var(--color-rule)] pb-8">
+        <p class="font-semibold text-[color:var(--color-ink)]">Get new guides by email</p>
+        <p class="mt-1">
+          New posts on Japanese ramen. No spam, unsubscribe anytime.
+        </p>
+        <form
+          method="post"
+          action={formAction}
+          class="mt-3 flex flex-col gap-2 sm:max-w-md sm:flex-row"
+        >
+          <label for={inputId} class="sr-only">
+            Email address
+          </label>
+          <input
+            id={inputId}
+            type="email"
+            name="email_address"
+            required
+            autocomplete="email"
+            placeholder="you@example.com"
+            class={inputClass}
+          />
+          <button type="submit" class={buttonClass}>
+            Subscribe
+          </button>
+        </form>
+      </div>
+    ))
+}

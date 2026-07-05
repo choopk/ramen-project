@@ -1,0 +1,21 @@
+---
+// Large serif pull quote to add visual rhythm and surface a key line. Uses text-balance for
+// even line breaks (Baseline since 2024; degrades to normal wrapping where unsupported).
+interface Props {
+  quote: string;
+  attribution?: string;
+}
+
+const { quote, attribution } = Astro.props;
+---
+
+<figure class="not-prose cc-block border-l-4 pl-6" style="border-color: var(--color-accent);">
+  <blockquote class="text-balance font-[family-name:var(--font-serif)] text-2xl font-medium leading-snug text-[color:var(--color-ink)]">
+    {quote}
+  </blockquote>
+  {
+    attribution && (
+      <figcaption class="mt-3 text-sm text-[color:var(--color-ink-soft)]">{attribution}</figcaption>
+    )
+  }
+</figure>

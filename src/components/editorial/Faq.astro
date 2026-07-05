@@ -1,0 +1,56 @@
+---
+// A question-and-answer block that renders a visible, prose-styled FAQ AND emits
+// FAQPage JSON-LD inline (valid anywhere in the page body, not just <head>). Visible
+// Q&A is deliberate: AI answer engines and Bing extract the clean question/answer
+// pairs, and the prose stays the long-tail-query surface. Mirrors the inline pattern
+// used on the pillar pages (ai-pricing/ai-models/ai-coding-cost-calculator), made
+// reusable so MDX posts get the same structured data.
+//
+// Answers are plain text so the JSON-LD acceptedAnswer.text stays clean; any
+// supporting citation lives in the post body where the claim is first made.
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  heading?: string;
+  // When true, emit only the FAQPage JSON-LD and render nothing visible. Use on posts
+  // that already have a hand-written visible FAQ section (so the structured data is
+  // added without duplicating the prose). Keep the items' text in sync with what's
+  // visible on the page.
+  schemaOnly?: boolean;
+}
+
+const { items, heading = 'Frequently asked questions', schemaOnly = false } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+{
+  !schemaOnly && (
+    <section class="not-prose mt-12 border-t border-[color:var(--color-rule)] pt-8">
+      <h2 class="mb-6 font-[family-name:var(--font-serif)] text-2xl font-semibold tracking-tight text-[color:var(--color-ink)]">
+        {heading}
+      </h2>
+      <dl class="divide-y divide-[color:var(--color-rule)]">
+        {items.map((f) => (
+          <div class="py-5 first:pt-0">
+            <dt class="text-lg font-semibold leading-snug text-[color:var(--color-ink)]">{f.q}</dt>
+            <dd class="mt-2 leading-relaxed text-[color:var(--color-ink-soft)]">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

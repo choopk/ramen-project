@@ -1,0 +1,35 @@
+---
+// Vertical dated timeline. Good for sequences of events (launches, raises, releases).
+interface TimelineItem {
+  date: string;
+  title: string;
+  body?: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="not-prose cc-block">
+  <ol class="relative ml-1 border-l border-[color:var(--color-rule)] pl-6">
+    {
+      items.map((item) => (
+        <li class="relative pb-6 last:pb-0">
+          <span
+            class="absolute -left-[30px] top-1 h-3 w-3 rounded-full border-2 border-[color:var(--color-paper)]"
+            style="background: var(--color-accent);"
+            aria-hidden="true"
+          />
+          <p class="text-xs font-semibold uppercase tracking-wider text-[color:var(--color-ink-soft)]">
+            {item.date}
+          </p>
+          <p class="mt-1 font-medium text-[color:var(--color-ink)]">{item.title}</p>
+          {item.body && <p class="mt-1 text-sm leading-relaxed text-[color:var(--color-ink-soft)]">{item.body}</p>}
+        </li>
+      ))
+    }
+  </ol>
+</div>

@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "insertFinalNewline": true,
+
+  "sortImports": true,
+  "sortTailwindcss": true,
+
+  "svelte": true,
+
+  "ignorePatterns": [
+    "pnpm-lock.yaml",
+    "dist/",
+    ".astro/",
+    ".claude/",
+    ".github/",
+    "public/googled6d61766ca016d4c.html"
+  ]
+}

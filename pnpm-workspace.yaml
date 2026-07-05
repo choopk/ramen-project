@@ -1,0 +1,15 @@
+# pnpm settings home. As of pnpm 11 the "pnpm" field in package.json is no
+# longer read; build-script and other settings live here instead.
+#
+# pnpm blocks dependency install/build scripts by default (strictDepBuilds).
+# Allow only the packages that genuinely need to run them: esbuild + sharp
+# compile/fetch native binaries; lefthook installs the git hooks.
+allowBuilds:
+  esbuild: true
+  sharp: true
+  lefthook: true
+minimumReleaseAgeExclude:
+  - '@astrojs/markdown-satteri@0.3.1'
+  - '@astrojs/mdx@7.0.0'
+  - '@astrojs/svelte@9.0.0'
+  - astro@7.0.0

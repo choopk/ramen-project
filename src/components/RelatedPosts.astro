@@ -1,0 +1,61 @@
+---
+// End-of-post "Related reading" block. Surfaces up to `max` published posts that
+// share the most tags with the current one, newest first as the tiebreaker. Scales
+// internal linking with the post count (every post gets contextual cluster links
+// without hand-placing them) on top of the deliberate in-body citation links.
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentId: string;
+  tags: string[];
+  max?: number;
+}
+
+const { currentId, tags, max = 3 } = Astro.props;
+
+const candidates = await getCollection('blog', ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true,
+);
+
+const related: CollectionEntry<'blog'>[] = candidates
+  .filter((p) => p.id !== currentId)
+  .map((p) => ({ post: p, score: p.data.tags.filter((t) => tags.includes(t)).length }))
+  .filter((r) => r.score > 0)
+  .toSorted(
+    (a, b) => b.score - a.score || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf(),
+  )
+  .slice(0, max)
+  .map((r) => r.post);
+---
+
+{
+  related.length > 0 && (
+    <nav
+      class="washi-divider mt-12 pt-8"
+      aria-labelledby="related-heading"
+    >
+      <h2
+        id="related-heading"
+        class="mb-4 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)]"
+      >
+        Related reading
+        <span lang="ja" aria-hidden="true" class="jp-accent text-[11px]">関連記事</span>
+      </h2>
+      <ul class="space-y-4">
+        {related.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`} class="group block no-underline">
+              <span class="font-[family-name:var(--font-serif)] text-lg font-semibold leading-snug text-[color:var(--color-ink)] group-hover:text-[color:var(--color-accent-ink)]">
+                {post.data.title}
+              </span>
+              <span class="mt-1 block text-sm text-[color:var(--color-ink-soft)]">
+                {post.data.description}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
