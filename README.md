@@ -23,6 +23,7 @@ pnpm run indexnow    # submit recently-changed URLs to IndexNow (needs real doma
 - **GEO:** `/llms.txt` (auto-generated post catalog), AI-crawler allows + `Content-Signal` in `/robots.txt`, Agent Skills index at `/.well-known/agent-skills/`, WebMCP `list_articles` tool.
 - **AdSense:** account-level loader in `BaseHead.astro` + `/ads.txt`, both driven by `SITE.adsensePublisherId` (blank = both inert). Approval readiness scored by `pnpm run audit` (needs ≥15 quality posts — that's the content roadmap).
 - **Content:** MDX posts in `src/content/blog/` with a Zod-validated frontmatter schema (`src/content.config.ts`). Copy `_template.mdx` to start a post. Editorial components in `src/components/editorial/`.
+- **SEO skills:** 12 Claude Code skills vendored in `.claude/skills/` (superseo-skills set + native `geo-audit`) for the weekly content workflow — see [SKILLS.md](SKILLS.md).
 
 ## Placeholders to replace before launch
 
