@@ -28,3 +28,7 @@ pnpm-debug.log*
 
 # Cloudflare wrangler/miniflare local state
 .wrangler/
+
+# agent loop
+memory/logs/
+memory/STOP
