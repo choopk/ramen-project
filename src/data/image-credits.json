@@ -1,4 +1,22 @@
 {
+  "/images/chicken-shio-ramen-salt-paitan.webp": {
+    "title": "Mahoroba Chicken Shio Ramen",
+    "creator": "経済特区",
+    "creator_url": "",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:%E3%83%9E%E3%83%9B%E3%83%AD%E3%83%90%E3%81%AE%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3(%E9%AF%9B%E3%81%A8%E9%B6%8F%E3%81%AE%E5%A1%A9%E9%B6%8F%E7%99%BD%E6%B9%AF%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3)IMG_20220423_004612~2.jpg",
+    "retrieved": "2026-07-05"
+  },
+  "/images/clam-shio-ramen-asari.webp": {
+    "title": "Freshwater Clam Ramen",
+    "creator": "Qwert1234",
+    "creator_url": "",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Freshwater_clam_Ramen.JPG",
+    "retrieved": "2026-07-05"
+  },
   "/images/dried-kombu-kelp-umami.webp": {
     "title": "Dried kombu in a supermarket",
     "creator": "Froggieboy",
@@ -33,6 +51,15 @@
     "license": "CC BY-SA 3.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=5046303",
+    "retrieved": "2026-07-05"
+  },
+  "/images/hakodate-shio-ramen-classic.webp": {
+    "title": "Hakodate Shio Ramen",
+    "creator": "Hector Martin",
+    "creator_url": "",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hakodate-Shio-Ramen.png",
     "retrieved": "2026-07-05"
   },
   "/images/hakodate-shio-ramen-hokkaido.webp": {
@@ -168,6 +195,24 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "source_url": "https://commons.wikimedia.org/wiki/File:Tonkotsu_Ramen_%22Shiromaru%22,_Ippudo_Louvre,_Paris_11_June_2016_001.jpg",
+    "retrieved": "2026-07-05"
+  },
+  "/images/tonkotsu-shio-ramen-hybrid.webp": {
+    "title": "Tonkotsu Shio Ramen",
+    "creator": "RightCowLeftCoast",
+    "creator_url": "",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tonkotsu_Shio.jpg",
+    "retrieved": "2026-07-05"
+  },
+  "/images/yuzu-shio-ramen-afuri.webp": {
+    "title": "Yuzu Shio Ramen",
+    "creator": "Daderot",
+    "creator_url": "",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yuzu_shio_ramen_-_Massachusetts.jpg",
     "retrieved": "2026-07-05"
   }
 }
