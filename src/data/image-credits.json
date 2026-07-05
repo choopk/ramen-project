@@ -26,6 +26,15 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:Fresh_ramen_noodle_001.jpg",
     "retrieved": "2026-07-05"
   },
+  "/images/hakata-tonkotsu-thin-straight-noodles.webp": {
+    "title": "Ichiran Hakata-ramen",
+    "creator": "kamoseiro",
+    "creator_url": "",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=5046303",
+    "retrieved": "2026-07-05"
+  },
   "/images/hakodate-shio-ramen-hokkaido.webp": {
     "title": "Hakodate-Shio-Ramen",
     "creator": "Hector Martin",
@@ -33,6 +42,15 @@
     "license": "CC BY-SA 2.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=99235728",
+    "retrieved": "2026-07-05"
+  },
+  "/images/iekei-ramen-yokohama-chicken-oil.webp": {
+    "title": "Yokohama Iekei Ramen Yamazakiya Bowl",
+    "creator": "ウィ貴公子",
+    "creator_url": "",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:%E6%A8%AA%E6%B5%9C%E5%AE%B6%E7%B3%BB%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3_%E5%B1%B1%E5%B4%8E%E5%AE%B6_2023%E5%B9%B412%E6%9C%889%E6%97%A5%E3%81%AE%E6%A8%AA%E6%B5%9C_202312092232_IMG_5197.jpg",
     "retrieved": "2026-07-05"
   },
   "/images/instant-ramen-block-boiling.webp": {
@@ -51,6 +69,15 @@
     "license": "CC BY 2.5",
     "license_url": "https://creativecommons.org/licenses/by/2.5",
     "source_url": "https://commons.wikimedia.org/wiki/File:Old-japanese-soy-sauce-jug,katori-city,japan.JPG",
+    "retrieved": "2026-07-05"
+  },
+  "/images/kitakata-ramen-flat-noodles.webp": {
+    "title": "Kitakata-ramen of Kitakata-ramen Bannai",
+    "creator": "毒島みるく",
+    "creator_url": "",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=94664480",
     "retrieved": "2026-07-05"
   },
   "/images/kitakata-shoyu-ramen-chashu.webp": {
@@ -132,6 +159,15 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=50030318",
+    "retrieved": "2026-07-05"
+  },
+  "/images/tonkotsu-ramen-ippudo-creamy-broth.webp": {
+    "title": "Tonkotsu Ramen Shiromaru Ippudo Louvre Paris",
+    "creator": "Guilhem Vellut",
+    "creator_url": "",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tonkotsu_Ramen_%22Shiromaru%22,_Ippudo_Louvre,_Paris_11_June_2016_001.jpg",
     "retrieved": "2026-07-05"
   }
 }
