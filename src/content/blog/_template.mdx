@@ -5,13 +5,13 @@
 #
 # AUDIT GATES (pnpm run audit): each published post must pass ALL of these:
 #   • Body length     ≥ 1000 words of rendered prose
-#   • description      50–160 characters (SEO meta length)
+#   • description      110–160 characters (SEO meta length, enforced by src/lib/seo.mjs)
 #   • Images           ≥ 1 image with a non-empty alt attribute
 #   • Internal links   ≥ 2 links to other posts/pages on this site
 #   • Tags             ≥ 1 tag; keep draft:false only when truly ready to publish
 #
 title: '' # Specific, concrete headline. No clickbait.
-description: '' # 50–160 chars. This is the SERP snippet. Make it earn the click.
+description: '' # 110–160 chars. This is the SERP snippet. Make it earn the click.
 pubDate: 2025-01-15 # REQUIRED. Replace with the publish date in YYYY-MM-DD format.
 # updatedDate: 2025-01-15       # Uncomment + set when you materially revise a published post.
 # heroImage: '/images/your-hero.png'   # Optional OG image + counts toward the image gate (give it alt below too).
