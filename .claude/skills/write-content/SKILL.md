@@ -111,7 +111,7 @@ delve, landscape (metaphorical), testament, leverage, utilize, robust, seamless,
 - Rule-of-three groupings (use 2 or 4 items instead)
 - Synonym cycling (repeat the right word rather than finding alternatives)
 - Copula avoidance ("serves as" — just say "is")
-- Em-dash chains (max 1-2 per 1000 words)
+- Em dashes (NEVER use them — use commas, colons, semicolons, or parentheses instead)
 - Binary contrasts ("it's not X, it's Y" — just make the argument)
 - Participial tack-ons ("...highlighting the importance of X" — delete or make a separate sentence)
 - Clustering of: however, notably, essentially, that said, arguably — fine individually, but 3+ in one article flags AI

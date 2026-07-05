@@ -18,6 +18,8 @@ or evicted at consolidation.
   build fails on violations. [human · 2026-07-05]
 - lefthook pre-commit auto-fixes lint/format on staged files; commits can be
   reformatted under you. [human · 2026-07-05]
+- NEVER use em dashes (—) in articles. Use commas, colons, semicolons, or parentheses
+  instead. Hard rule for all src/content/blog/\*.mdx files. [human · 2026-07-05]
 
 ## Lessons
 

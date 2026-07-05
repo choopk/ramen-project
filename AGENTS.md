@@ -15,6 +15,10 @@ This is a starter: branding is placeholder ("Ramen Guide" / `https://example.com
 
 The site targets organic traffic and ad-network monetization (AdSense first). The AdSense approval gate is fully specified in `scripts/audit-approval.mjs` (min 15 quality posts, trust pages, SEO plumbing) — run `pnpm run build && pnpm run audit` to see the scorecard. Content depth is the lever; the plumbing is done.
 
+## Content rules
+
+- **NEVER use em dashes (—) in articles.** Use commas, colons, semicolons, or parentheses instead. This is a hard rule for all `src/content/blog/*.mdx` files.
+
 ## Commands
 
 ```bash
