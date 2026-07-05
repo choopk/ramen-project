@@ -41,7 +41,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "lefthook": "^2.1.9",
-    "oxfmt": "^0.54.0",
+    "oxfmt": "^0.57.0",
     "oxlint": "^1.69.0",
     "png-to-ico": "^3.0.1",
     "sharp": "^0.35.3",
