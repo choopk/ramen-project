@@ -14,6 +14,7 @@ const blog = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       heroImage: z.string().optional(),
+      heroImageAlt: z.string().optional(),
       tags: z.array(z.string()).default([]),
       draft: z.boolean().optional().default(false),
       author: z.string().default('Ramen Guide'),
@@ -23,6 +24,13 @@ const blog = defineCollection({
     // src/integrations/seo-meta-guard.mjs at build time. Mirrors the publish gate.
     .superRefine((data, ctx) => {
       if (data.draft) return;
+      if (data.heroImage && !data.heroImageAlt?.trim()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['heroImageAlt'],
+          message: 'heroImageAlt is required when heroImage is set on a published post',
+        });
+      }
       const t = data.title.length;
       if (t < SEO_LIMITS.titleMin || t > SEO_LIMITS.titleMax) {
         ctx.addIssue({

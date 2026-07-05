@@ -86,6 +86,23 @@ function accessibleSvgs(html) {
   }).length;
 }
 
+// Core Web Vitals hygiene for body images: explicit width+height (zero CLS), and
+// anything that is not the fetchpriority="high" hero must be lazy-loaded.
+function imgHygieneFailures(html) {
+  const imgs = html.match(/<img\b[^>]*>/gi) ?? [];
+  const failures = [];
+  const sized = imgs.filter(
+    (tag) => /\bwidth=["']\d+["']/i.test(tag) && /\bheight=["']\d+["']/i.test(tag),
+  ).length;
+  if (sized < imgs.length) failures.push(`${imgs.length - sized} images missing width/height`);
+  const lazyOrHero = imgs.filter(
+    (tag) => /\bfetchpriority=["']high["']/i.test(tag) || /\bloading=["']lazy["']/i.test(tag),
+  ).length;
+  if (lazyOrHero < imgs.length)
+    failures.push(`${imgs.length - lazyOrHero} non-hero images missing loading="lazy"`);
+  return failures;
+}
+
 function internalLinks(html) {
   const hrefs = [...html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)].map((m) => m[1]);
   const internal = new Set();
@@ -125,6 +142,7 @@ function auditPost(post) {
     failures.push(`description ${desc.length} chars (need ${DESC_MIN}-${DESC_MAX})`);
   const imgs = imagesWithAlt(article) + accessibleSvgs(article);
   if (imgs < MIN_IMAGES) failures.push(`${imgs} images w/ alt (<${MIN_IMAGES})`);
+  failures.push(...imgHygieneFailures(article));
   const links = internalLinks(article);
   if (links < MIN_INTERNAL_LINKS) failures.push(`${links} internal links (<${MIN_INTERNAL_LINKS})`);
   const tags = countTags(html);

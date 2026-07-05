@@ -23,6 +23,11 @@ or evicted at consolidation.
 
 ## Lessons
 
+- oxfmt corrupts multi-line `{/* */}` comments in .mdx (rewrites `/*` to `/_`, invalid
+  MDX). Keep MDX comments single-line. [agent · 2026-07-05]
+- Wikimedia upload.wikimedia.org 429s on burst downloads; space image fetches out and
+  retry after ~20s. [agent · 2026-07-05]
+
 - Agent must proactively read MEMORY.md + USER.md at session start even if
   opencode.json instructions are set. The config injects them, but the agent
   should verify and act on the content, not just see it. [agent · 2026-07-05]

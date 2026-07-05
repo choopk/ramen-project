@@ -18,6 +18,7 @@ The site targets organic traffic and ad-network monetization (AdSense first). Th
 ## Content rules
 
 - **NEVER use em dashes (—) in articles.** Use commas, colons, semicolons, or parentheses instead. This is a hard rule for all `src/content/blog/*.mdx` files.
+- **Images:** every post gets a hero (frontmatter `heroImage` + required `heroImageAlt`) plus 2-4 inline `<Figure>` blocks at concept/ingredient explanations. Source, optimize, and name them via the workflow in `.claude/skills/source-images/SKILL.md` (backed by `scripts/fetch-image.mjs` + `scripts/optimize-image.mjs`; CC-safe licenses only, visible attribution). Credits are recorded in `src/data/image-credits.json`; never edit it by hand.
 
 ## Commands
 
@@ -66,6 +67,6 @@ Full guide: `memory/README.md`.
 
 ## Cross-tool notes
 
-- SEO skills are plain markdown in `.claude/skills/<name>/SKILL.md` — any CLI can follow them directly; no Claude runtime required.
+- SEO skills are plain markdown in `.claude/skills/<name>/SKILL.md` — any CLI can follow them directly; no Claude runtime required. The image pipeline (`source-images` skill + the two `scripts/*-image.mjs` scripts) is likewise CLI-agnostic: plain markdown + Node scripts, no API keys.
 - OpenCode: `opencode.json` force-loads `memory/MEMORY.md` + `memory/USER.md` via its `instructions` array (OpenCode does not follow `@path` imports). `memory/PROMPT.md` is deliberately NOT auto-loaded — interactive sessions are not loop iterations.
 - Gemini CLI reads GEMINI.md by default; for interactive Gemini here, add `.gemini/settings.json` with `{"contextFileName": ["AGENTS.md"]}`. Headless loop runs don't need it.

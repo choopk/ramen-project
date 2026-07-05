@@ -11,13 +11,22 @@ import RelatedPosts from '../components/RelatedPosts.astro';
 import SubscribeForm from '../components/SubscribeForm.astro';
 import { SITE } from '../consts';
 import { lastmodFor } from '../lib/lastmod.mjs';
+import imageCredits from '../data/image-credits.json';
 
 interface Props {
   entry: CollectionEntry<'blog'>;
 }
 
 const { entry } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage, tags, author } = entry.data;
+const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, tags, author } =
+  entry.data;
+
+// Visible attribution for the hero, recorded by scripts/optimize-image.mjs (CC-BY
+// and CC-BY-SA sources require it).
+type ImageCredit = { creator: string; license: string; source_url: string };
+const heroCredit = heroImage
+  ? (imageCredits as Record<string, ImageCredit>)[heroImage]
+  : undefined;
 const url = new URL(Astro.url.pathname, Astro.site);
 
 const crumbs = [
@@ -93,6 +102,28 @@ const updatedLabel = updatedDate?.toLocaleDateString('en-US', {
           <p class="mt-6 text-sm text-[color:var(--color-ink-soft)]">By {author}</p>
           <span class="washi-rule mt-8" aria-hidden="true"></span>
         </header>
+        {heroImage && (
+          <figure class="mx-auto mb-10 max-w-3xl">
+            <img
+              src={heroImage}
+              alt={heroImageAlt ?? ''}
+              width="1200"
+              height="675"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full rounded-lg"
+            />
+            {heroCredit && (
+              <figcaption class="mt-2 text-xs text-[color:var(--color-ink-soft)]">
+                Photo: {heroCredit.source_url ? (
+                  <a href={heroCredit.source_url} class="underline">{heroCredit.creator}</a>
+                ) : (
+                  heroCredit.creator
+                )} ({heroCredit.license})
+              </figcaption>
+            )}
+          </figure>
+        )}
         <div class="prose prose-lg max-w-none prose-shell">
           <slot />
         </div>

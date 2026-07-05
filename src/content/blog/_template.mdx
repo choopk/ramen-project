@@ -14,7 +14,8 @@ title: '' # Specific, concrete headline. No clickbait.
 description: '' # 110–160 chars. This is the SERP snippet. Make it earn the click.
 pubDate: 2025-01-15 # REQUIRED. Replace with the publish date in YYYY-MM-DD format.
 # updatedDate: 2025-01-15       # Uncomment + set when you materially revise a published post.
-# heroImage: '/images/your-hero.png'   # Optional OG image + counts toward the image gate (give it alt below too).
+# heroImage: '/images/your-hero.webp'   # OG image + rendered hero (1200x675). Source via .claude/skills/source-images/SKILL.md.
+# heroImageAlt: ''               # REQUIRED when heroImage is set on a published post. 8-20 words, describe what is visible.
 tags: [] # ≥ 1 tag, e.g. ['styles', 'tonkotsu']
 draft: true # Flip to false to publish. Drafts are hidden in prod.
 author: 'Ramen Guide' # Org byline. Do not use a personal name.
@@ -26,8 +27,24 @@ author: 'Ramen Guide' # Org byline. Do not use a personal name.
 
 Write the body. Aim well past 1000 words of substance. Use primary sources and link them.
 
-{/* IMAGE GATE: at least one image with real alt text. */}
-![Describe the chart/screenshot for accessibility and SEO](/images/example.png)
+{/* IMAGE GATE: at least one image with real alt text. Source + optimize via the source-images workflow. */}
+{/* .claude/skills/source-images/SKILL.md prints this block ready to paste. */}
+{/* Add `import Figure from '../../components/editorial/Figure.astro';` at the top of the body. */}
+
+<Figure
+  caption="One sentence tying the image to the surrounding prose."
+  source="Creator via Wikimedia Commons (CC BY 2.0)"
+  sourceHref="https://commons.wikimedia.org/wiki/File:Example.jpg"
+>
+  <img
+    src="/images/example.webp"
+    alt="Describe what is visible, 8-20 words"
+    width="1200"
+    height="800"
+    loading="lazy"
+    decoding="async"
+  />
+</Figure>
 
 {/* INTERNAL-LINK GATE: link to at least two other pages on the site. */}
 See our [editorial standards](/editorial-standards/) and related coverage in
