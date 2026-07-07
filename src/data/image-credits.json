@@ -1,4 +1,31 @@
 {
+  "/images/ajitama-marinated-ramen-egg.webp": {
+    "title": "Ajitama",
+    "creator": "Guilhem Vellut",
+    "creator_url": "",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=141427749",
+    "retrieved": "2026-07-05"
+  },
+  "/images/chashu-pork-belly-ramen-sliced.webp": {
+    "title": "Chashu tanmen - Hiratsuka Kanagawa",
+    "creator": "Nesnad",
+    "creator_url": "",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=132707917",
+    "retrieved": "2026-07-05"
+  },
+  "/images/chashu-pork-belly-sliced.webp": {
+    "title": "Chashu don with pork and scallions on white rice",
+    "creator": "Daderot",
+    "creator_url": "",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=139905273",
+    "retrieved": "2026-07-05"
+  },
   "/images/chicken-shio-ramen-salt-paitan.webp": {
     "title": "Mahoroba Chicken Shio Ramen",
     "creator": "経済特区",
@@ -80,6 +107,15 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:%E6%A8%AA%E6%B5%9C%E5%AE%B6%E7%B3%BB%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3_%E5%B1%B1%E5%B4%8E%E5%AE%B6_2023%E5%B9%B412%E6%9C%889%E6%97%A5%E3%81%AE%E6%A8%AA%E6%B5%9C_202312092232_IMG_5197.jpg",
     "retrieved": "2026-07-05"
   },
+  "/images/iekei-ramen-yokohama-pork-bone.webp": {
+    "title": "Yokohama iekei ramen at Yamazaki-ya",
+    "creator": "ウィ貴公子",
+    "creator_url": "",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:%E6%A8%AA%E6%B5%9C%E5%AE%B6%E7%B3%BB%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3_%E5%B1%B1%E5%B4%8E%E5%AE%B6_2023%E5%B9%B412%E6%9C%889%E6%97%A5%E3%81%AE%E6%A8%AA%E6%B5%9C_202312092215_IMG_5194.jpg",
+    "retrieved": "2026-07-06"
+  },
   "/images/instant-ramen-block-boiling.webp": {
     "title": "Top Ramen cooking",
     "creator": "BrokenSphere",
@@ -107,6 +143,15 @@
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=94664480",
     "retrieved": "2026-07-05"
   },
+  "/images/kitakata-ramen-fukushima.webp": {
+    "title": "Kitakata ramen with char siu at Abe Shokudo",
+    "creator": "skyseeker",
+    "creator_url": "",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kitakata_ramen_with_char_siu_by_skyseeker.jpg",
+    "retrieved": "2026-07-06"
+  },
   "/images/kitakata-shoyu-ramen-chashu.webp": {
     "title": "Kitakata ramen with char siu by skyseeker",
     "creator": "skyseeker from Kitakata ramen house Abe Shokudo in Kitakata, Fukushima",
@@ -125,6 +170,15 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:Japanese_Hosaki_Menma.jpg",
     "retrieved": "2026-07-05"
   },
+  "/images/menma-fermented-bamboo-shoots.webp": {
+    "title": "Japanese Hosaki Menma",
+    "creator": "DryPot",
+    "creator_url": "",
+    "license": "CC BY 2.5",
+    "license_url": "https://creativecommons.org/licenses/by/2.5/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=16971746",
+    "retrieved": "2026-07-05"
+  },
   "/images/miso-ramen-butter-corn-bowl.webp": {
     "title": "Miso ramen of Sapporo 01",
     "creator": "ノボホショコロトソ",
@@ -132,6 +186,42 @@
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=179083846",
+    "retrieved": "2026-07-05"
+  },
+  "/images/narutomaki-fish-cake-spiral.webp": {
+    "title": "Narutomaki 001",
+    "creator": "Ocdp",
+    "creator_url": "",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=127575406",
+    "retrieved": "2026-07-05"
+  },
+  "/images/negi-scallion-green-onion.webp": {
+    "title": "GreenOnions",
+    "creator": "Jonathunder",
+    "creator_url": "",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=10625900",
+    "retrieved": "2026-07-05"
+  },
+  "/images/nori-dried-seaweed-sheets.webp": {
+    "title": "Sushi seaweed in box",
+    "creator": "BrokenSphere",
+    "creator_url": "",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sushi_seaweed_in_box.JPG",
+    "retrieved": "2026-07-05"
+  },
+  "/images/nori-seaweed-sheets-onigiri.webp": {
+    "title": "Japanese rice balls (onigiri)",
+    "creator": "tednmiki",
+    "creator_url": "",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=33418598",
     "retrieved": "2026-07-05"
   },
   "/images/sapporo-miso-ramen-junren-bowl.webp": {
@@ -169,6 +259,42 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "source_url": "https://commons.wikimedia.org/w/index.php?curid=56501766",
     "retrieved": "2026-07-05"
+  },
+  "/images/tokushima-ramen-dark-sweet.webp": {
+    "title": "Tokushima ramen with dark sweet broth",
+    "creator": "Mti",
+    "creator_url": "",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tokushima_noodle_Instant_01.JPG",
+    "retrieved": "2026-07-06"
+  },
+  "/images/tokushima-ramen-men-oh-dark-sweet.webp": {
+    "title": "Tokushima Ramen at Men-Oh",
+    "creator": "Kzaral",
+    "creator_url": "",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=145184448",
+    "retrieved": "2026-07-06"
+  },
+  "/images/tokyo-classic-shoyu-ramen-rairaiken.webp": {
+    "title": "Rairaiken ramen at Yutenji, Tokyo",
+    "creator": "ウィキ太郎 (Wiki Taro)",
+    "creator_url": "",
+    "license": "Public domain",
+    "license_url": "",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Japanese-style_Chinese_noodle_RAMEN_of_the_restaurant_RAIRAIKEN_at_Yutenji_Tokyo.jpg",
+    "retrieved": "2026-07-06"
+  },
+  "/images/tokyo-classic-shoyu-ramen.webp": {
+    "title": "Shoyu Ramen at Shichisai, Tokyo Ramen Street",
+    "creator": "Guilhem Vellut",
+    "creator_url": "",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen_@_Shichisai_@_Tokyo_Ramen_Street_(13165538514).jpg",
+    "retrieved": "2026-07-06"
   },
   "/images/tokyo-shoyu-ramen-toppings.webp": {
     "title": "Shoyu Ramen (Tokyo Ramen)",
@@ -214,5 +340,14 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "source_url": "https://commons.wikimedia.org/wiki/File:Yuzu_shio_ramen_-_Massachusetts.jpg",
     "retrieved": "2026-07-05"
+  },
+  "/images/tanrei-shoyu-ramen-clear-broth.webp": {
+    "title": "Tanrei shoyu ramen",
+    "creator": "User-provided",
+    "creator_url": "",
+    "license": "Unknown",
+    "license_url": "",
+    "source_url": "",
+    "retrieved": "2026-07-06"
   }
 }
